@@ -3,25 +3,22 @@ using namespace std;
 // Boats to Save People(LeetCode)
 int numRescueBoats(vector<int> &people, int limit)
 {
-    int n = people.size(), i;
-    int numboats = 0;
     sort(people.begin(), people.end());
-    for (i = 0; i < n; ++i)
+    int i = 0, j = people.size() - 1, numBoats = 0;
+    while (i <= j)
     {
-        if (people[i] == -1)
-            continue;
-        int currWt = people[i];
-        auto itr = lower_bound(people.begin(), people.end(), limit - currWt);
-        if (itr != people.end())
+        int sumWt = people[i] + people[j];
+        if (sumWt <= limit)
         {
-            if ((*itr) > limit - currWt)
-                itr--;
-            people[itr - people.begin()] = -1;
+            i++, j--;
         }
-        people[i] = -1;
-        numboats++;
+        else
+        {
+            j--;
+        }
+        numBoats++;
     }
-    return numboats;
+    return numBoats;
 }
 int main()
 {
