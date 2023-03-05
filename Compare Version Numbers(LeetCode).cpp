@@ -21,6 +21,8 @@ int compareVersion(string version1, string version2)
         }
         if(num1>num2) return 1;
         else if(num1<num2) return -1;
+        i++;
+        j++;
     }
     return 0;
 }
